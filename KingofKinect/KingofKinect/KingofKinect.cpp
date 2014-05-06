@@ -24,24 +24,35 @@ int main(){
 		}
 	}
 
+	for (int i = 0; i < x; i++){
+		for (int j = 0; j < y; j++){
+			cout << tab[i][j];
+		}
+		cout << endl;
+	}
 	
 	
 	while (1) //For all of time
 	{
-		for (int i = 0; i < x; i++){
-			for (int j = 0; j < y; j++){
-				cout << tab[i][j];
-			}
-			cout << endl;
-		}
+
 
 		NuiSkeletonGetNextFrame(0, &ourframe); //Get a frame and stuff it into ourframe
 		for (int i = 0; i < 6; i++) //Six times, because the Kinect has space to track six people
 		{
-			if (ourframe.SkeletonData[i].eTrackingState == NUI_SKELETON_TRACKED) //See more on this line below
-				tab[(int)((ourframe.SkeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HAND_RIGHT].y * 10))][(int)((ourframe.SkeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HAND_RIGHT].x * 10))] = 1;
+			if (ourframe.SkeletonData[i].eTrackingState == NUI_SKELETON_TRACKED){ //See more on this line below
+				system("cls");//Clear the screen
+				tab[10 -(int)((ourframe.SkeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HAND_RIGHT].y * 10))][(int)((ourframe.SkeletonData[i].SkeletonPositions[NUI_SKELETON_POSITION_HAND_RIGHT].x * 10))] = 1;
+
+				for (int i = 0; i < x; i++){
+					for (int j = 0; j < y; j++){
+						cout << tab[i][j];
+					}
+					cout << endl;
+				}
+			
+			}
 		}
-		system("cls");//Clear the screen
+		
 	}
 
 	NuiShutdown();
